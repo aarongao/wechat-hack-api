@@ -48,7 +48,7 @@
       });
     },
     scanmessage: function() {
-      return client.scanmessage(100, function(err, cgiData) {
+      return client.scanmessage(10, function(err, cgiData) {
         return console.log(cgiData);
       });
     },

@@ -35,7 +35,7 @@ cmd =
             console.log cgiData
 
     scanmessage: ->
-        client.scanmessage 100, (err,cgiData) ->
+        client.scanmessage 10, (err,cgiData) ->
             console.log cgiData
 
     usermessage: ->
