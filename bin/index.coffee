@@ -12,10 +12,10 @@ cmd =
     login : ->
         process.stdin.write 'username: '
         (data) ->
-            username = data.trim() || 'xiaobug@gmail.com'
+            username = data.trim() || 'aaron.geng@imagchina.com'
             process.stdin.write 'password: '
             (data) ->
-                password = data.trim() || '6609889'
+                password = data.trim() || 'imagchina'
                 console.log "logining as #{username} ..."
                 client.login username, password, '', (err,token)->
                     # 输入验证码

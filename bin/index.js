@@ -17,11 +17,11 @@
       process.stdin.write('username: ');
       return function(data) {
         var username;
-        username = data.trim() || 'xiaobug@gmail.com';
+        username = data.trim() || 'aaron.geng@imagchina.com';
         process.stdin.write('password: ');
         return function(data) {
           var password;
-          password = data.trim() || '6609889';
+          password = data.trim() || 'imagchina';
           console.log("logining as " + username + " ...");
           return client.login(username, password, '', function(err, token) {
             if (err && err.message === 'verifycode') {
