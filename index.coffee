@@ -101,6 +101,18 @@ ApiClient = class ApiClient
 
                 cb && cb err, cgiData.msg_items.msg_item
 
+
+    appid : (cb)->
+      @_request @cgi+"advanced?action=dev&t=advanced/dev&token=#{@token}&lang=zh_CN"
+      , {}
+      , (err,body,res)->
+
+        rs = /<script type=\"text\/javascript\">\s+cgiData = ([\s\w\W]+?)seajs\.use\(\"advanced\/dev\"\)/.exec body.toString() if body
+        cgiData = undefined
+        eval 'cgiData='+rs[1] if rs
+
+        cb && cb err,cgiData.devInfo
+
     userinfo: (fakeid,cb)->
 
         opts =

@@ -129,6 +129,20 @@
       });
     };
 
+    ApiClient.prototype.appid = function(cb) {
+      return this._request(this.cgi + ("advanced?action=dev&t=advanced/dev&token=" + this.token + "&lang=zh_CN"), {}, function(err, body, res) {
+        var cgiData, rs;
+        if (body) {
+          rs = /<script type=\"text\/javascript\">\s+cgiData = ([\s\w\W]+?)seajs\.use\(\"advanced\/dev\"\)/.exec(body.toString());
+        }
+        cgiData = void 0;
+        if (rs) {
+          eval('cgiData=' + rs[1]);
+        }
+        return cb && cb(err, cgiData.devInfo);
+      });
+    };
+
     ApiClient.prototype.userinfo = function(fakeid, cb) {
       var opts;
       opts = {

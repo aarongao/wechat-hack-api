@@ -17,11 +17,11 @@
       process.stdin.write('username: ');
       return function(data) {
         var username;
-        username = data.trim() || 'aaron.geng@imagchina.com';
+        username = data.trim() || 'admin@imagchina.com';
         process.stdin.write('password: ');
         return function(data) {
           var password;
-          password = data.trim() || 'imagchina';
+          password = data.trim() || 'd1$ney123';
           console.log("logining as " + username + " ...");
           return client.login(username, password, '', function(err, token) {
             if (err && err.message === 'verifycode') {
@@ -59,6 +59,11 @@
           return console.log(cgiData);
         });
       };
+    },
+    appid: function() {
+      return client.appid(function(err, cgiData) {
+        return console.log(cgiData);
+      });
     },
     userinfo: function() {
       process.stdin.write('fakeid:');
