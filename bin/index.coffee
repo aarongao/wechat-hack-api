@@ -48,6 +48,10 @@ cmd =
         client.appid  (err,cgiData) ->
           console.log cgiData
 
+    bindApiToken: ->
+        client.bindApiToken  (err,cgiData) ->
+          console.log cgiData
+
     userinfo: ->
         process.stdin.write 'fakeid:'
         (data) ->

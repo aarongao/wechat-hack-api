@@ -131,6 +131,22 @@ ApiClient = class ApiClient
                 console.log err, if err then undefined else body
                 cb && cb err,body
 
+    bindApiToken: (url,token,cb)->
+
+      opts =
+        type: 'POST'
+        dataType: 'json'
+        data:
+          url:url
+          callback_token:token
+        headers:
+          Referer: "#{@cgi}advanced?action=interface&t=advanced/interface&token=#{@token}&lang=zh_CN"
+
+      @_request "#{@cgi}callbackprofile?t=ajax-response&token=#{@token}&lang=zh_CN", opts, (err,body,res) ->
+
+        console.log err, if err then undefined else body
+        cb && cb err,body
+
     headimg: (fakeid,localpath,cb)->
        @_request @cgi+"getheadimg?fakeid=#{fakeid}&lang=zh_CN",
             writeStream: fs.createWriteStream(localpath)

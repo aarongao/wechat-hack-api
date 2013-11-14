@@ -164,6 +164,25 @@
       });
     };
 
+    ApiClient.prototype.bindApiToken = function(url, token, cb) {
+      var opts;
+      opts = {
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          url: url,
+          callback_token: token
+        },
+        headers: {
+          Referer: "" + this.cgi + "advanced?action=interface&t=advanced/interface&token=" + this.token + "&lang=zh_CN"
+        }
+      };
+      return this._request("" + this.cgi + "callbackprofile?t=ajax-response&token=" + this.token + "&lang=zh_CN", opts, function(err, body, res) {
+        console.log(err, err ? void 0 : body);
+        return cb && cb(err, body);
+      });
+    };
+
     ApiClient.prototype.headimg = function(fakeid, localpath, cb) {
       return this._request(this.cgi + ("getheadimg?fakeid=" + fakeid + "&lang=zh_CN"), {
         writeStream: fs.createWriteStream(localpath),

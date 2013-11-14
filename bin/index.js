@@ -65,6 +65,11 @@
         return console.log(cgiData);
       });
     },
+    bindApiToken: function() {
+      return client.bindApiToken(function(err, cgiData) {
+        return console.log(cgiData);
+      });
+    },
     userinfo: function() {
       process.stdin.write('fakeid:');
       return function(data) {
