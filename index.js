@@ -88,10 +88,10 @@
     };
 
     ApiClient.prototype.scanuser = function(pageidx, cb) {
-      return this._request(this.cgi + ("contactmanage?t=user/index&pagesize=10&pageidx=" + (pageidx || 0) + "&type=0&groupid=0&lang=zh_CN"), {}, function(err, body, res) {
+      return this._request(this.cgi + ("contactmanage?t=user/index&pagesize=10&pageidx=" + (pageidx || 0) + "&type=0&groupid=0&token=" + this.token + "&lang=zh_CN"), {}, function(err, body, res) {
         var cgiData, rs;
         if (body) {
-          rs = /<script type=\"text\/javascript\">\s+wx\.cgiData=([\s\w\W]+?)seajs\.use\(\"user\/index\"\);/.exec(body.toString());
+          rs = /wx\.cgiData=([\s\w\W]+?)seajs\.use/.exec(body.toString());
         }
         cgiData = void 0;
         if (rs) {
@@ -102,10 +102,10 @@
     };
 
     ApiClient.prototype.scanmessage = function(count, cb) {
-      return this._request(this.cgi + ("message?t=message/list&count=" + (count || 100) + "&day=7&lang=zh_CN"), {}, function(err, body, res) {
+      return this._request(this.cgi + ("message?t=message/list&count=" + (count || 100) + "&day=7&token=" + this.token + "&lang=zh_CN"), {}, function(err, body, res) {
         var cgiData, rs;
         if (body) {
-          rs = /<script type=\"text\/javascript\">\s+wx\.cgiData = ([\s\w\W]+?)seajs\.use\(\"message\/list\"\);/.exec(body.toString());
+          rs = /wx\.cgiData = ([\s\w\W]+?)seajs\.use/.exec(body.toString());
         }
         cgiData = void 0;
         if (rs) {
@@ -184,7 +184,7 @@
     };
 
     ApiClient.prototype.headimg = function(fakeid, localpath, cb) {
-      return this._request(this.cgi + ("getheadimg?fakeid=" + fakeid + "&lang=zh_CN"), {
+      return this._request(this.cgi + ("getheadimg?fakeid=" + fakeid + "&token=" + this.token + "&lang=zh_CN"), {
         writeStream: fs.createWriteStream(localpath),
         headers: {
           'User-Agent': this.agent,
@@ -312,7 +312,3 @@
   };
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=index.map
-*/

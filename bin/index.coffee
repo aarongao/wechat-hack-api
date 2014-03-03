@@ -12,10 +12,10 @@ cmd =
     login : ->
         process.stdin.write 'username: '
         (data) ->
-            username = data.trim() || 'admin@imagchina.com'
+            username = data.trim() || 'xiaobug@gmail.com'
             process.stdin.write 'password: '
             (data) ->
-                password = data.trim() || 'd1$ney123'
+                password = data.trim() || '6609889'
                 console.log "logining as #{username} ..."
                 client.login username, password, '', (err,token)->
                     # 输入验证码
@@ -41,7 +41,7 @@ cmd =
     usermessage: ->
         process.stdin.write 'fakeid: '
         (data) ->
-            client.usermessage data.trim()||'1867891761', (err,cgiData) ->
+            client.usermessage data.trim()||'726966324', (err,cgiData) ->
                 console.log cgiData
 
     appid: ->
@@ -55,12 +55,12 @@ cmd =
     userinfo: ->
         process.stdin.write 'fakeid:'
         (data) ->
-            client.userinfo data.trim()||'1867891761', (err,info)->
+            client.userinfo data.trim()||'726966324', (err,info)->
 
     headimg: ->
         process.stdin.write 'fakeid:'
         (data)->
-            fakeid = data.trim() || '1867891761'
+            fakeid = data.trim() || '726966324'
             process.stdin.write 'local path:'
             (data)->
                 localpath = do data.trim
@@ -88,7 +88,7 @@ cmd =
     send: ->
         process.stdin.write 'fakeid:'
         (data)->
-            fakeid = data.trim() || '1867891761'
+            fakeid = data.trim() || '726966324'
             process.stdin.write 'text:'
             (data)->
                 client.send fakeid, data

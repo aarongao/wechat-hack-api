@@ -17,11 +17,11 @@
       process.stdin.write('username: ');
       return function(data) {
         var username;
-        username = data.trim() || 'admin@imagchina.com';
+        username = data.trim() || 'xiaobug@gmail.com';
         process.stdin.write('password: ');
         return function(data) {
           var password;
-          password = data.trim() || 'd1$ney123';
+          password = data.trim() || '6609889';
           console.log("logining as " + username + " ...");
           return client.login(username, password, '', function(err, token) {
             if (err && err.message === 'verifycode') {
@@ -55,7 +55,7 @@
     usermessage: function() {
       process.stdin.write('fakeid: ');
       return function(data) {
-        return client.usermessage(data.trim() || '1867891761', function(err, cgiData) {
+        return client.usermessage(data.trim() || '726966324', function(err, cgiData) {
           return console.log(cgiData);
         });
       };
@@ -73,14 +73,14 @@
     userinfo: function() {
       process.stdin.write('fakeid:');
       return function(data) {
-        return client.userinfo(data.trim() || '1867891761', function(err, info) {});
+        return client.userinfo(data.trim() || '726966324', function(err, info) {});
       };
     },
     headimg: function() {
       process.stdin.write('fakeid:');
       return function(data) {
         var fakeid;
-        fakeid = data.trim() || '1867891761';
+        fakeid = data.trim() || '726966324';
         process.stdin.write('local path:');
         return function(data) {
           var localpath;
@@ -121,7 +121,7 @@
       process.stdin.write('fakeid:');
       return function(data) {
         var fakeid;
-        fakeid = data.trim() || '1867891761';
+        fakeid = data.trim() || '726966324';
         process.stdin.write('text:');
         return function(data) {
           return client.send(fakeid, data);
@@ -191,7 +191,3 @@
   prompt();
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=index.map
-*/

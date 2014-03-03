@@ -66,11 +66,11 @@ ApiClient = class ApiClient
 
 
     scanuser : (pageidx,cb)->
-        @_request @cgi+"contactmanage?t=user/index&pagesize=10&pageidx=#{pageidx||0}&type=0&groupid=0&lang=zh_CN"
+        @_request @cgi+"contactmanage?t=user/index&pagesize=10&pageidx=#{pageidx||0}&type=0&groupid=0&token=#{@token}&lang=zh_CN"
             , {}
             , (err,body,res)->
                 #console.log err,body.toString()
-                rs = /<script type=\"text\/javascript\">\s+wx\.cgiData=([\s\w\W]+?)seajs\.use\(\"user\/index\"\);/.exec body.toString() if body
+                rs = /wx\.cgiData=([\s\w\W]+?)seajs\.use/.exec body.toString() if body
 
                 cgiData = undefined
                 eval 'cgiData='+rs[1] if rs
@@ -78,11 +78,11 @@ ApiClient = class ApiClient
                 cb && cb err, cgiData
 
     scanmessage : (count,cb)->
-        @_request @cgi+"message?t=message/list&count=#{count||100}&day=7&lang=zh_CN"
+        @_request @cgi+"message?t=message/list&count=#{count||100}&day=7&token=#{@token}&lang=zh_CN"
             , {}
             , (err,body,res)->
                 #console.log err,body.toString()
-                rs = /<script type=\"text\/javascript\">\s+wx\.cgiData = ([\s\w\W]+?)seajs\.use\(\"message\/list\"\);/.exec body.toString() if body
+                rs = /wx\.cgiData = ([\s\w\W]+?)seajs\.use/.exec body.toString() if body
 
                 cgiData = undefined
                 eval 'cgiData='+rs[1] if rs
@@ -148,7 +148,7 @@ ApiClient = class ApiClient
         cb && cb err,body
 
     headimg: (fakeid,localpath,cb)->
-       @_request @cgi+"getheadimg?fakeid=#{fakeid}&lang=zh_CN",
+       @_request @cgi+"getheadimg?fakeid=#{fakeid}&token=#{@token}&lang=zh_CN",
             writeStream: fs.createWriteStream(localpath)
             headers:
                 'User-Agent': @agent
