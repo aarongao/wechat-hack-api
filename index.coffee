@@ -39,7 +39,7 @@ ApiClient = class ApiClient
 
                 else
                     token = undefined
-                    if body and (rs=body.ErrMsg.toString().match(/\btoken=(\d+)/)) and rs[1]
+                    if body and (rs=body.base_resp.err_msg.toString().match(/\btoken=(\d+)/)) and rs[1]
                         @token = token = rs[1]
                         @username = username
                         @password = password

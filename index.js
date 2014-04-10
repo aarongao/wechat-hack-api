@@ -56,7 +56,7 @@
           });
         } else {
           token = void 0;
-          if (body && (rs = body.ErrMsg.toString().match(/\btoken=(\d+)/)) && rs[1]) {
+          if (body && (rs = body.base_resp.err_msg.toString().match(/\btoken=(\d+)/)) && rs[1]) {
             _this.token = token = rs[1];
             _this.username = username;
             _this.password = password;
