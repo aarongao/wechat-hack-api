@@ -28,7 +28,7 @@ ApiClient = class ApiClient
             type: 'POST'
             timeout: 30000
             , (err,body,res) =>
-                #console.log arguments
+
                 # 需要输入验证码
                 if body and body.ErrCode==-6
                     @fetchVerifyCode username, (err,path)=>
@@ -39,7 +39,7 @@ ApiClient = class ApiClient
 
                 else
                     token = undefined
-                    if body and (rs=body.base_resp.err_msg.toString().match(/\btoken=(\d+)/)) and rs[1]
+                    if body and (rs=body.redirect_url.toString().match(/\btoken=(\d+)/)) and rs[1]
                         @token = token = rs[1]
                         @username = username
                         @password = password
@@ -148,7 +148,7 @@ ApiClient = class ApiClient
         cb && cb err,body
 
     headimg: (fakeid,localpath,cb)->
-       @_request @cgi+"getheadimg?fakeid=#{fakeid}&token=#{@token}&lang=zh_CN",
+       @_request "https://mp.weixin.qq.com/misc/getheadimg?fakeid=#{fakeid}&token=#{@token}&lang=zh_CN",
             writeStream: fs.createWriteStream(localpath)
             headers:
                 'User-Agent': @agent

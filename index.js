@@ -56,7 +56,7 @@
           });
         } else {
           token = void 0;
-          if (body && (rs = body.base_resp.err_msg.toString().match(/\btoken=(\d+)/)) && rs[1]) {
+          if (body && (rs = body.redirect_url.toString().match(/\btoken=(\d+)/)) && rs[1]) {
             _this.token = token = rs[1];
             _this.username = username;
             _this.password = password;
@@ -184,7 +184,7 @@
     };
 
     ApiClient.prototype.headimg = function(fakeid, localpath, cb) {
-      return this._request(this.cgi + ("getheadimg?fakeid=" + fakeid + "&token=" + this.token + "&lang=zh_CN"), {
+      return this._request("https://mp.weixin.qq.com/misc/getheadimg?fakeid=" + fakeid + "&token=" + this.token + "&lang=zh_CN", {
         writeStream: fs.createWriteStream(localpath),
         headers: {
           'User-Agent': this.agent,
